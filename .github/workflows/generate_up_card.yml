@@ -27,7 +27,7 @@ jobs:
       
       - name: 运行生成脚本
         run: |
-          python UP_data_gen_img.py --input ./bili/UP_data.json --output ./bili
+          python UP_data_gen_img.py --input ./bili/UP_data.json --output ./bili/UP_card
       
       - name: 提交更改到仓库
         uses: stefanzweifel/git-auto-commit-action@v5
