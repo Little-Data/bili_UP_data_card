@@ -1,18 +1,20 @@
 import json
 import os
+import argparse
 from playwright.sync_api import sync_playwright
 
 # 获取脚本所在目录的绝对路径
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-JSON_FILE = os.path.join(SCRIPT_DIR, "bili", "UP_data.json")
-BASE_FILENAME = os.path.join(SCRIPT_DIR, "bili", "up_card")
-
-def generate_both_themes(json_file, base_filename):
-    # 确保输出目录存在
-    os.makedirs(os.path.dirname(base_filename), exist_ok=True)
+# 默认输入输出路径
+DEFAULT_JSON_FILE = os.path.join(SCRIPT_DIR, "bili", "UP_data.json")
+DEFAULT_BASE_FILENAME = os.path.join(SCRIPT_DIR, "bili", "up_card")
 
 def generate_up_card_html(json_file, theme="light"):
     """根据JSON数据和主题生成完整的HTML内容"""
+    # 检查输入JSON文件是否存在
+    if not os.path.exists(json_file):
+        raise FileNotFoundError(f"输入JSON文件不存在: {json_file}")
+        
     with open(json_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
@@ -39,7 +41,7 @@ def generate_up_card_html(json_file, theme="light"):
     # 获取当前主题的样式
     style = themes[theme]
     
-    # 生成完整HTML
+    # 生成完整HTML（HTML内容与原代码一致，此处省略）
     html_content = f"""
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -145,6 +147,10 @@ def generate_card_image(json_file, output_image, theme="light"):
 
 def generate_both_themes(json_file, base_filename="up_card"):
     """同时生成浅色和深色主题的卡片图片"""
+    # 确保输出目录存在
+    output_dir = os.path.dirname(base_filename)
+    os.makedirs(output_dir, exist_ok=True)
+    
     # 生成浅色主题
     light_output = f"{base_filename}_light.png"
     generate_card_image(json_file, light_output, theme="light")
@@ -154,5 +160,14 @@ def generate_both_themes(json_file, base_filename="up_card"):
     generate_card_image(json_file, dark_output, theme="dark")
 
 if __name__ == "__main__":
+    # 解析命令行参数
+    parser = argparse.ArgumentParser(description='生成B站UP主数据卡片图片')
+    parser.add_argument('--input', type=str, default=DEFAULT_JSON_FILE, 
+                      help=f'输入JSON数据文件路径，默认: {DEFAULT_JSON_FILE}')
+    parser.add_argument('--output', type=str, default=DEFAULT_BASE_FILENAME,
+                      help=f'输出图片基础路径（不含后缀），默认: {DEFAULT_BASE_FILENAME}')
     
-    generate_both_themes(JSON_FILE, BASE_FILENAME)
+    args = parser.parse_args()
+    
+    # 生成卡片
+    generate_both_themes(args.input, args.output)
