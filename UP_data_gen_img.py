@@ -17,6 +17,8 @@ def generate_up_card_html(json_file, theme="light"):
         
     with open(json_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
+
+    sign_with_br = data['sign'].replace('\n', '<br>')
     
     # 主题样式配置
     themes = {
@@ -41,7 +43,7 @@ def generate_up_card_html(json_file, theme="light"):
     # 获取当前主题的样式
     style = themes[theme]
     
-    # 生成完整HTML（HTML内容与原代码一致，此处省略）
+    # 生成完整HTML
     html_content = f"""
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -74,7 +76,7 @@ def generate_up_card_html(json_file, theme="light"):
         <div align="center">
             <img src="{data['face']}" alt="{data['name']}" width="120" height="120" style="border-radius: 50%; margin-bottom: 10px; border: 3px solid {style['card_bg']};">
             <h2 style="color: {style['text_primary']};">{data['name']}</h2>
-            <p style="color: {style['text_secondary']}; margin-bottom: 20px;">{data['sign']}</p>
+            <p style="color: {style['text_secondary']}; margin-bottom: 20px;">{sign_with_br}</p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; max-width: 500px; margin: 0 auto;">
                 <div style="background-color: {style['card_bg']}; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
