@@ -128,3 +128,11 @@ fonts-noto
 # 灵感
 
 [bilibili-API-collectapi](https://github.com/SocialSisterYi/bilibili-API-collect)接口文档，一切的基础。
+
+# license
+
+CC BY-NC-SA 4.0
+
+[署名—非商业性使用—相同方式共享 4.0 协议国际版](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-hans)
+
+![Star History Chart](https://api.star-history.com/svg?repos=Little-Data/bili_UP_data_card&type=date&legend=top-left)
