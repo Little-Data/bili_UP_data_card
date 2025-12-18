@@ -135,4 +135,4 @@ CC BY-NC-SA 4.0
 
 [署名—非商业性使用—相同方式共享 4.0 协议国际版](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-hans)
 
-![Star History Chart](https://api.star-history.com/svg?repos=Little-Data/bili_UP_data_card&type=date&legend=top-left)
+[![Stargazers over time](https://starchart.cc/Little-Data/bili_UP_data_card.svg?variant=adaptive)](https://starchart.cc/Little-Data/bili_UP_data_card)
