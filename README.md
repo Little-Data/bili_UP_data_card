@@ -120,7 +120,6 @@ HTML模板中引用了字体文件，如果缺少可自行安装。一般情况�
 
 ```
 fonts-roboto
-fonts-oxygen
 fonts-cantarell
 fonts-noto
 ```
